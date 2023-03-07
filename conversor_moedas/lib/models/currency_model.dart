@@ -1,9 +1,9 @@
 class CurrencyModel {
   final String? name;
-  final num? real;
-  final num? dolar;
-  final num? euro;
-  final num? bitcoin;
+  final double? real;
+  final double? dolar;
+  final double? euro;
+  final double? bitcoin;
 
   CurrencyModel({this.name, this.real, this.dolar, this.euro, this.bitcoin});
 

@@ -1,7 +1,7 @@
 import 'package:conversor_moedas/models/currency_model.dart';
 import 'package:flutter/cupertino.dart';
 
-class HomeCotroller {
+class HomeController {
   List<CurrencyModel>? currencies;
 
   final TextEditingController toText;
@@ -10,7 +10,7 @@ class HomeCotroller {
   CurrencyModel? toCurrency;
   CurrencyModel? fromCurrency;
 
-  HomeCotroller({required this.toText, required this.fromText}) {
+  HomeController({required this.toText, required this.fromText}) {
     currencies = CurrencyModel.getCurrencies();
     toCurrency = currencies?[0];
     fromCurrency = currencies?[1];

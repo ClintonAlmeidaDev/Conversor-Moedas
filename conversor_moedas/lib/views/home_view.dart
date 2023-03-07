@@ -1,12 +1,31 @@
 import 'dart:html';
 
 import 'package:conversor_moedas/components/currency_box.dart';
+import 'package:conversor_moedas/controllers/home_controller.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/material.dart';
 
-class HomeView extends StatelessWidget {
+class HomeView extends StatefulWidget {
   const HomeView({super.key});
+
+  @override
+  State<HomeView> createState() => _HomeViewState();
+}
+
+class _HomeViewState extends State<HomeView> {
+  late HomeController homeController;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    homeController = HomeController(toText: toText, fromText: fromText);
+  }
+
+  TextEditingController toText = TextEditingController();
+
+  TextEditingController fromText = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -27,18 +46,38 @@ class HomeView extends StatelessWidget {
                     width: 250,
                     height: 250,
                   ),
-                  CurrencyBox(),
+                  CurrencyBox(
+                    selectedItem: homeController.toCurrency!,
+                    controller: toText,
+                    items: homeController.currencies!,
+                    onChanged: (model) {
+                      setState(() {
+                        homeController.toCurrency = model;
+                      });
+                    },
+                  ),
                   SizedBox(
                     height: 10,
                   ),
-                  CurrencyBox(),
+                  CurrencyBox(
+                    selectedItem: homeController.fromCurrency!,
+                    controller: fromText,
+                    items: homeController.currencies!,
+                    onChanged: (model) {
+                      setState(() {
+                        homeController.fromCurrency = model;
+                      });
+                    },
+                  ),
                   Padding(
                     padding: const EdgeInsets.only(top: 40),
                     child: ElevatedButton(
                       style: ElevatedButton.styleFrom(
                         primary: Colors.amber,
                       ),
-                      onPressed: () {},
+                      onPressed: () {
+                        homeController.convert();
+                      },
                       child: Text('CONVERTER'),
                     ),
                   )

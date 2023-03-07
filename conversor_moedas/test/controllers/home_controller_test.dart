@@ -6,7 +6,7 @@ main() {
   TextEditingController toText = TextEditingController();
   TextEditingController fromText = TextEditingController();
 
-  final homeController = HomeCotroller(toText: toText, fromText: fromText);
+  final homeController = HomeController(toText: toText, fromText: fromText);
 
   test('Deve converter de real para dolar', () {
     toText.text = '2,0';
